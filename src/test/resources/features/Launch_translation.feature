@@ -1,6 +1,6 @@
 Feature:Translation feature
 
-@outline
+@ht
  Scenario Outline: Translation QA-BULLETIN
     Given the user is on the login page
     And the user enters the credentials
@@ -43,10 +43,10 @@ Feature:Translation feature
   And user checks the status
   Examples:
     |publication type|
-    |BRM       |
+    |NCF       |
 
 
-  @tme @wip
+  @tme
   Scenario: Translation with QA-NCF
 
   Given the user is on the login page

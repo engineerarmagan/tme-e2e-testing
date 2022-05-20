@@ -65,6 +65,8 @@ public class Image_review_page {
         BrowserUtils.waitFor(1);
         image_check();
         }
+
+
         public void image_check_tmna(){
             System.out.println("Checking images");
             new Actions(Driver.get()).moveToElement(image_review_button).click(image_review_button).build().perform();
