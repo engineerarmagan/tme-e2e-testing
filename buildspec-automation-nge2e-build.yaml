@@ -1,0 +1,32 @@
+version: 0.2
+env:
+  git-credential-helper: yes
+  
+
+phases:
+    install:
+        runtime-versions:
+            java: corretto11
+            nodejs: 10
+        commands:
+            - apt-get -y update
+            - apt-get -y install ttf-mscorefonts-installer openssl perl
+            - curl -sS "https://s3-eu-west-1.amazonaws.com/com.entitygroup.shared.services.rpm/msttcorefonts.tar.gz" > msttcorefonts.tar.gz
+            - tar -xvzPf msttcorefonts.tar.gz
+            - fc-cache
+            - cd $CODEBUILD_SRC_DIR
+    pre_build:
+        commands:
+         
+          - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+          - echo Checking out $BRANCH_NAME...
+          - git checkout $BRANCH_NAME
+    build:
+        commands:
+            - printenv
+            - echo Build started on `date`
+            - mvn verify
+    post_build:
+        commands:
+            - echo Build and Tag completed on `date`
+            - aws s3 cp target s3://com.entitygroup.nge2e.automation/date=$(date '+%Y-%m-%d')/
