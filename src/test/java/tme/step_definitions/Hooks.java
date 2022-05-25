@@ -5,7 +5,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.w3c.dom.html.HTMLImageElement;
+
 import tme.utilities.Driver;
 
 import java.util.concurrent.TimeUnit;
@@ -31,6 +31,6 @@ public class Hooks {
     public void setUp()
     {
         System.out.println("this is before");
-        Driver.get().manage().window().maximize();
+         Driver.get().manage().window().maximize();
 
     }}

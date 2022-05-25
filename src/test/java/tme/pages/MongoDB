@@ -1,0 +1,29 @@
+//package tme.pages;
+//
+//import com.mongodb.ClientSessionOptions;
+//import com.mongodb.client.*;
+//import com.mongodb.connection.ClusterDescription;
+//import io.github.bonigarcia.wdm.WebDriverManager;
+//import org.bson.Document;
+//import org.bson.conversions.Bson;
+//import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.chrome.ChromeOptions;
+//import tme.utilities.Driver;
+//
+//import java.util.List;
+//import java.util.logging.Logger;
+//
+//
+//    public class MongoDB {
+//
+//    public void connectMongoDB(){
+//        Logger mongoLogger= Logger.getLogger("org.mongodb.driver");
+//        MongoClient mongoClient = MongoClients.create("mongodb://localhost:3234");
+//        mongoClient.getDatabase("dbname");
+//    }
+//     public void cleardown(){
+//
+//
+//    }
+//
+//    }

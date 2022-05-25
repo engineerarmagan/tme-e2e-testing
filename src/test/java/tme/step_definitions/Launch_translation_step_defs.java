@@ -11,8 +11,6 @@ import tme.pages.*;
 import tme.utilities.BrowserUtils;
 import tme.utilities.Driver;
 
-import java.io.IOException;
-
 public class Launch_translation_step_defs {
 
 
@@ -88,7 +86,7 @@ new Xtm_dashboard_page().XTM_project_url();
     @When("selects view costs and approves if required for TMNA")
     public void selectsViewCostsTmna() {
         BrowserUtils.waitFor(2);
-        new Stage_details_page().click_view_costs_tmna();
+        new TMNA_Stage_details_page().click_view_costs();
 
     }
 
@@ -101,7 +99,7 @@ new Xtm_dashboard_page().XTM_project_url();
     @Given("user navigates to URL")
     public void userNavigatesTo() {
         System.out.println("user should navigate to stage detail url");
-        Driver.get().get("https://systest.e2e-tmna.com/dashboard#/detail/BM33B3U~0~EN~18Camry-HV_BM33B0U_EN_20-09-28_UX~ES~T2~1");
+        Driver.get().get("https://dev.e2e-toyota.com/dashboard#/detail/BM3910~0~EN~33ec46fa-d837-4630-8899-4b3aff987195~TR~T2~2");
         System.out.println(Driver.get().getCurrentUrl()) ;
     BrowserUtils.waitFor(3);
     }
@@ -153,7 +151,7 @@ new Xtm_dashboard_page().XTM_project_url();
     }
     @And("user checks the status of TMNA")
     public void userChecksTheStatusOfTMNA() {
-        new Stage_details_page().stage_status_check_tmna();
+        new TMNA_Stage_details_page().stage_status_check();
     }
 
     @Then("approves the translation cost for TMNA")
@@ -190,5 +188,13 @@ new Xtm_dashboard_page().XTM_project_url();
     @Given("the user uses given CPID")
     public void theUserUsesGivenCPID() {
         String CPID="BM33B3U~0~EN~18Camry-HV_BM33B0U_EN_20-09-28_UX~FR~T2~2";
+    }
+
+    @Then("user should ask for Post Edit")
+    public void userShouldAskForPostEdit() {
+        new Post_edit_page().get_post_edit_details();
+        new Post_edit_page().ask_for_post_edit();
+        BrowserUtils.waitFor(300);
+
     }
 }

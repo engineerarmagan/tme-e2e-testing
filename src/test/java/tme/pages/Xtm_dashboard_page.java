@@ -72,11 +72,11 @@ public class Xtm_dashboard_page extends Base_page{
         BrowserUtils.waitFor(2);
 
        try{
-        if(no_project.isDisplayed()&&number<10){
+        if(no_project.isDisplayed()&&number<30){
             BrowserUtils.waitFor(30);
             new Actions(Driver.get()).moveToElement(search_button).click().build().perform();
-            System.out.println("searched "+ number+ " times");
             number++;
+            System.out.println("search+"+ number);
             search();
         }else{
             System.out.println("else project found");

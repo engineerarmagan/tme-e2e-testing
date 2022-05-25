@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import tme.utilities.BrowserUtils;
 import tme.utilities.Driver;
 import java.time.Duration;
 
@@ -21,7 +22,7 @@ import java.time.Duration;
 
 
 public void wait_analyse_completion(){
-
+        BrowserUtils.waitFor(5);
         WebDriverWait wait=new WebDriverWait(Driver.get(),Duration.ofSeconds(1200));
         wait.pollingEvery(Duration.ofSeconds(120));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'is still being analysed')]")));

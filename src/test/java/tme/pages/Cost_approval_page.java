@@ -1,5 +1,7 @@
 package tme.pages;
+import io.cucumber.java.et.Ja;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +23,7 @@ public class Cost_approval_page {
 
 
     public void approve_cost(){
+        System.out.println("approve cost methodun ici");
 
         String my_cpid= Xtm_dashboard_page.CPID;
         List<String> my_checkbox=all_CPIDs.stream().filter(s -> s.getText().contains(my_cpid))
@@ -29,12 +32,17 @@ public class Cost_approval_page {
         }
 
     private String check_approval_checkbox(WebElement s) {
+        System.out.println("check approval checkbox ici");
+        BrowserUtils.waitFor(2);
         s.findElement(By.xpath("following-sibling::td[15]")).click();
         return null;
     }
     public void click_approve_button(){
+        JavascriptExecutor js=(JavascriptExecutor) Driver.get();
+        js.executeScript("window.scrollBy(0,-500)","");
         BrowserUtils.waitFor(2);
-        new Actions(Driver.get()).moveToElement(approve_button).click().build().perform();
+        approve_button.click();
+        System.out.println("click approve button");
     }
 
     public void approve_cost_tmna(){

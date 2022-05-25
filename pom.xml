@@ -22,6 +22,13 @@
             <version>5.0.1</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.12.11</version>
+        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
@@ -81,30 +88,23 @@
         </dependency>
 
 
-
-
-
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
-<!--                    <parallel>methods</parallel>-->
-<!--                    <useUnlimitedThreads>true</useUnlimitedThreads>-->
                     <testFailureIgnore>true</testFailureIgnore>
                     <runOrder>Alphabetical</runOrder>
                     <includes>
-                        <include>**/*Cukes_runner.java</include>
-                        <include>**/*Failed_test_runner.java</include>
+                        <include>**/*CukesRunner.java</include>
+                        <include>**/*FailedTestRunner.java</include>
                     </includes>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>

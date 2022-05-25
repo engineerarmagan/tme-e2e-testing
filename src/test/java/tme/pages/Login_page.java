@@ -44,6 +44,7 @@ public class Login_page extends Base_page{
     }
     public void xtm_login(String xtm_client,String xtm_username,String xtm_password){
         BrowserUtils.waitFor(2);
+        xtm_client_field.clear();
         xtm_client_field.sendKeys(xtm_client);
         xtm_username_field.sendKeys(xtm_username);
         xtm_password_field.sendKeys(xtm_password);
