@@ -1,9 +1,11 @@
 package tme.step_definitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import tme.pages.Queue_page;
+import tme.pages.Safety_terms_page;
 import tme.pages.Sil_page;
 import tme.utilities.BrowserUtils;
 
@@ -25,4 +27,14 @@ public class Sil_step_defs {
     }
 
 
+    @Then("user selects a sil")
+    public void userSelectsASil() {
+    new Sil_page().select_sil();
+
+    }
+
+    @And("user can download the csv file with name {string}")
+    public void userCanDownloadTheCsvFileWithName(String file_name) {
+        new Safety_terms_page().file_download(file_name);
+    }
 }

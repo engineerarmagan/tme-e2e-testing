@@ -7,8 +7,8 @@ import tme.pages.History_page;
 import tme.pages.Stage_details_page;
 
 public class Import_step_defs {
-    @And("approves the metadata")
-    public void approvesTheMetadata() {
+    @And("check metadata status")
+    public void checkMetadataStatus() {
         new Stage_details_page().approve_metadata();
 
     }

@@ -38,11 +38,10 @@ Given user on All Project page
 When search the project
 Then finish the project
 
-
 Given user navigates to stage details page
 And user checks the status
 Examples:
 |publication type|
-|BRM     |
+|RM    |
 
 

@@ -70,7 +70,14 @@ public class Launch_translation_step_defs {
         new Cost_approval_page().click_approve_button();
 
     }
+    @Then("approves the translation cost for specific CPID")
+    public void approvesTheTranslationCostForSpecificCPID() {
+        BrowserUtils.waitFor(2);
+        new Cost_approval_page().approve_cost_for_specific_CPID();
+        BrowserUtils.waitFor(3);
+        new Cost_approval_page().click_approve_button();
 
+    }
     @Given("the user navigates to previous XTM page")
     public void theUserNavigatesToPreviousXTMPage() {
 new Xtm_dashboard_page().XTM_project_url();
@@ -99,7 +106,7 @@ new Xtm_dashboard_page().XTM_project_url();
     @Given("user navigates to URL")
     public void userNavigatesTo() {
         System.out.println("user should navigate to stage detail url");
-        Driver.get().get("https://dev.e2e-toyota.com/dashboard#/detail/BM3910~0~EN~33ec46fa-d837-4630-8899-4b3aff987195~TR~T2~2");
+        Driver.get().get("https://dev.e2e-toyota.com/dashboard#/status/NM39K0~0~EN~fe5f8e3f-7e77-440f-b952-6698a3e00d1ad~ES~T2~2/bZ4X/NM39K0/0");
         System.out.println(Driver.get().getCurrentUrl()) ;
     BrowserUtils.waitFor(3);
     }
@@ -119,9 +126,9 @@ new Xtm_dashboard_page().XTM_project_url();
 
     @And("change the Block at publish to OFF")
     public void changeTheBlockAtPublishToOFF() {
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(2);
         new Stage_details_page().dont_block_at_publish();
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(2);
 
     }
     @And("change the Block at publish to ON")

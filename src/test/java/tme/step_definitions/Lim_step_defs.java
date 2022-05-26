@@ -13,6 +13,7 @@ public class Lim_step_defs {
 
     @When("the user navigates to {string} {string}")
     public void the_user_navigates_to(String tab, String subtab) {
+        BrowserUtils.waitFor(3);
     new Lim_page().navigate_to_subtab(tab,subtab);
 
     }

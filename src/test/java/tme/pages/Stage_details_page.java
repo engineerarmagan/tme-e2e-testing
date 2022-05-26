@@ -1,10 +1,5 @@
 package tme.pages;
 
-
-import org.junit.Assert;
-import org.openqa.selenium.By;
-
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -53,8 +48,9 @@ public class Stage_details_page extends Base_page {
     @FindBy(xpath = "//div[contains(text(),'Metadata approval required')]")
     public WebElement metadata_approval_required;
     @FindBy(xpath = "//button[normalize-space()='Revalidate & Approve Metadata']")
-    public WebElement revalidate_metadata;
+    public WebElement revalidate_metadata_button;
     static int minute=0;
+    static String fail_reason="";
 
     public Stage_details_page() {
         PageFactory.initElements(Driver.get(), this);
@@ -194,7 +190,6 @@ public class Stage_details_page extends Base_page {
     public void click_view_costs() {
         System.out.println("inside view cost method");
         BrowserUtils.waitFor(2);
-
         String stage = Stage.getText();
         String status = Status.getText();
         System.out.println(stage);
@@ -205,7 +200,7 @@ public class Stage_details_page extends Base_page {
             new Cost_approval_page().approve_cost();
             BrowserUtils.waitFor(3);
             new Cost_approval_page().click_approve_button();
-            System.out.println("if pretranslate waiting");
+            System.out.println("if pretranslate waiting ended");
         }
         if(stage.equalsIgnoreCase("TRANSLATE") && status.contains("PROCESSING")){
 
@@ -214,7 +209,6 @@ public class Stage_details_page extends Base_page {
         else{
             System.out.println("else no cost, go and finish the project");
         }
-
     }
 
     public void wait_PREQA() {
@@ -254,16 +248,23 @@ public class Stage_details_page extends Base_page {
         }
     }
 
+    public void extract_waiting() {
+        if (approve_metadata_button.isDisplayed()) approve_metadata_button.click();
+        if (revalidate_metadata_button.isDisplayed()) revalidate_metadata();
+    }
 
-    public void revalidate_metadata(){
-        System.out.println("revalidate methodun icindeyiz");
+
+    public void get_fail_reasons(){
         Extract.click();
         BrowserUtils.waitFor(3);
-        String reason=metadata_fail_reason.getText();
-        System.out.println(reason);
-        if(reason.contains("must be"))
+        fail_reason=metadata_fail_reason.getText();
+        System.out.println(fail_reason);
+    }
+    public void revalidate_metadata(){
+        System.out.println("revalidate methodun icindeyiz");
+        if(fail_reason.contains("must be"))
         {
-            String [] reasons=reason.split("must be");
+            String [] reasons=fail_reason.split("must be");
             System.out.println("inside reason contains must be");
             System.out.println("one of the reason is="+ reasons[0]);
             int j= reasons.length;
@@ -272,11 +273,13 @@ public class Stage_details_page extends Base_page {
                 System.out.println("inside for loop");
                 if(reasons[i].contains("Line off")) new Metadata_page().set_line_off_date();
                 if(reasons[i].contains("model/model")) set_model_code();
-
+                else{
+                    System.out.println("new fail reason found, please set a solution for this reason");
+                }
             }
         }
-        if(reason.contains("is  missing")){
-            String[] reasons = reason.split(" is missing.");
+        if(fail_reason.contains("is  missing")){
+            String[] reasons = fail_reason.split(" is missing.");
             System.out.println("inside reason contains is missing");
             System.out.println(reasons[1]);
             int j = reasons.length;
@@ -286,7 +289,7 @@ public class Stage_details_page extends Base_page {
                 if (reasons[i].equals("Subject")) set_subject();
             }
         }
-
+    revalidate_metadata();
     }
 
     public void set_model_code(){
@@ -304,22 +307,7 @@ public class Stage_details_page extends Base_page {
 
 
 
-    public void extract_waiting(){
-        System.out.println("inside extract waiting method");
-//        try{
-        System.out.println(Driver.get().findElement(By.xpath("//button[normalize-space()='Revalidate & Approve Metadata']")).getText());
-        System.out.println(revalidate_metadata.isDisplayed());
-        if(revalidate_metadata.isDisplayed()) {
-            revalidate_metadata();
-            System.out.println("bu ne simdi");
-        }
-        if(metadata_approval_required.isDisplayed()) approve_metadata();
-        //if(Driver.get().findElement(By.xpath("//button[normalize-space()='Revalidate & Approve Metadata']")).isDisplayed()) revalidate_metadata();
 
-//         }catch(Exception e){
-//            System.out.println("nothing appeared");
-//        }
-    }
 
 
 

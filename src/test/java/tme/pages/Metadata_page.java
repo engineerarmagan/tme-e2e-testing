@@ -35,21 +35,26 @@ public class Metadata_page extends Base_page {
         System.out.println("inside line off date method");
         //edit_metadata_button.click();
         BrowserUtils.waitFor(5);
-        new Actions(Driver.get()).moveToElement(edit_metadata_button).click().build().perform();
+        edit_metadata_button.click();
         System.out.println("edit metadata yi tikladik");
         BrowserUtils.waitFor(5);
-        new Actions(Driver.get()).moveToElement(open_calendar).click().build().perform();
+        open_calendar.click();
         System.out.println("calendari tiklamaya");
         BrowserUtils.waitFor(5);
-        new Actions(Driver.get()).moveToElement(todays_date).click().build().perform();
-        new Actions(Driver.get()).moveToElement(save_button).click().build().perform();
+        todays_date.click();
+        save_button.click();
         BrowserUtils.waitFor(2);
-        new Actions(Driver.get()).moveToElement(revalidate_metadata).click().build().perform();
+        revalidate_metadata.click();
         Driver.get().navigate().to(stage_details_url);
         new Stage_details_page().revalidate_metadata();
     }
 
+public void metadata_validation_check(){
 
+
+
+
+}
 
 
 }

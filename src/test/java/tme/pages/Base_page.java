@@ -1,5 +1,8 @@
 package tme.pages;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import tme.utilities.Driver;
 import tme.utilities.BrowserUtils;
 import org.openqa.selenium.By;
@@ -7,6 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -113,7 +119,11 @@ public abstract class Base_page {
         pub_type_for_project_name=publication_type.getText();
         new Actions(Driver.get()).moveToElement(publication_type).click(publication_type).build().perform();
         BrowserUtils.waitFor(2);
-}}}
+}
+
+    }
+
+}
 
 
 

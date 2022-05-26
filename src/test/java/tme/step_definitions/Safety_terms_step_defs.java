@@ -32,4 +32,11 @@ public class Safety_terms_step_defs {
         new Stage_details_page().wait_until_QA_WAIT();
         new Api().post_published();
     }
+
+
+
+    @Then("user clicks Translated")
+    public void userClicksTranslated() {
+    new Safety_terms_page().select_translated();
+    }
 }

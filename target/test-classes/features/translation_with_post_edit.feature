@@ -1,3 +1,5 @@
+
+# only BRM,NCF,RM publication types
 Feature: Translation with post edit
 @post
 Scenario: Translation with Post Edit process

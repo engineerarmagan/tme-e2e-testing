@@ -2,7 +2,6 @@ package tme.utilities;
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,12 +12,17 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.util.HashMap;
+
+
 public class Driver {
+
     private Driver() {
 
     }
 
     private static WebDriver driver;
+
 
     public static WebDriver get() {
         // Test 19/05/2022
@@ -28,12 +32,17 @@ public class Driver {
             switch (browser) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver(new ChromeOptions().addArguments("window-size=1920,1080"));
+                    HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+                    chromePrefs.put("profile.default_content_settings.popups", 0);
+                    chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
+                    ChromeOptions options = new ChromeOptions();
+                    options.setExperimentalOption("prefs", chromePrefs);
+                    driver = new ChromeDriver(options);
+                   // driver = new ChromeDriver(new ChromeOptions().addArguments("window-size=1920,1080"));
                     break;
                 case "chrome-headless":
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(new ChromeOptions().setHeadless(true).addArguments("window-size=1920,1080"));
-
                     break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();

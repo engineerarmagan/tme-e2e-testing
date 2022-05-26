@@ -49,6 +49,7 @@ public class Login_page extends Base_page{
         xtm_username_field.sendKeys(xtm_username);
         xtm_password_field.sendKeys(xtm_password);
         xtm_login_btn.click();
+        BrowserUtils.waitFor(3);
 }
 
 }

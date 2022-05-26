@@ -15,7 +15,7 @@ Feature:Import Feature
     Then selects first from the list
   
     Given user gets CPID and project name
-    And approves the metadata
+    And check metadata status
     When user navigates to stage details page
     Then publication stage should be PUBLISH
     And publication status should be BLOCKED

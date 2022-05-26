@@ -1,6 +1,6 @@
 Feature: SIL
 
-  @smoke
+  @sil
   Scenario: Sil Columns
 
     Given the user is on the login page
@@ -17,3 +17,5 @@ Feature: SIL
       | NCF        |
       | SDS        |
       | Embargo    |
+    Then user selects a sil
+    And user can download the csv file with name "sil_history"
