@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import tme.utilities.BrowserUtils;
 import tme.utilities.Driver;
 
+
 import java.util.List;
 
 public class Queue_priority_page {
@@ -78,4 +79,5 @@ public class Queue_priority_page {
         System.out.println(size_after);
         Assert.assertFalse(size_before==size_after);
     }
+
 }

@@ -1,11 +1,15 @@
 package tme.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import tme.utilities.BrowserUtils;
 import tme.utilities.Driver;
+
+import java.io.File;
+import java.util.List;
 
 public class Metadata_page extends Base_page {
 
@@ -28,6 +32,12 @@ public class Metadata_page extends Base_page {
     public WebElement revalidate_metadata;
     @FindBy(xpath = "//button[contains(text(),'Edit Metadata')]")
     public WebElement edit_metadata_button;
+    @FindBy(xpath = "//div[contains(text(),'Metadata')]")
+    public WebElement metadata_button;
+    @FindBy(xpath=" (//div[contains(text(),'Metadata Objects')]//parent::div)[1]//following-sibling::div//button")
+    public List<WebElement> metadata_objects;
+
+
 
 
 
@@ -48,6 +58,41 @@ public class Metadata_page extends Base_page {
         Driver.get().navigate().to(stage_details_url);
         new Stage_details_page().revalidate_metadata();
     }
+
+    public void select_metadata(){
+        metadata_button.click();
+    }
+
+    public void download_metadata_object(){
+        BrowserUtils.waitFor(3);
+        String first_object_name=metadata_objects.get(1).getText();
+        metadata_objects.get(1).click();
+        BrowserUtils.waitFor(3);
+       // Driver.get().switchTo().alert().accept();
+
+        BrowserUtils.waitFor(5);
+        File folder=new File(System.getProperty("user.dir"));
+        File[] list_of_files=folder.listFiles();
+        boolean found=false;
+        File f=null;
+        for (File list_of_file:list_of_files){
+            if(list_of_file.isFile()){
+                String file_name2=list_of_file.getName();
+
+
+                if(file_name2.contains("Unconfirmed")){
+                    System.out.println("file "+first_object_name+ " is downloaded");
+                    f=new File(file_name2);
+                    found=true;
+                }
+            }
+        }
+        Assert.assertTrue("not found",found);
+        f.deleteOnExit();
+
+    }
+
+
 
 public void metadata_validation_check(){
 
