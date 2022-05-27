@@ -1,5 +1,5 @@
-Feature: Translation
-@tmna
+Feature: TMNA Translation
+@tmna @regression
 Scenario: Translation
 
 Given the user is on the TMNA login page

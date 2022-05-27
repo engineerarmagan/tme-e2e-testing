@@ -13,7 +13,8 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "tme/step_definitions",
         dryRun=false,
-        tags= "@metadata"
+        tags= "@tmna and @smoke and @wip",
+        monochrome = true
 
 )
 

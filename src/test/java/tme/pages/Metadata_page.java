@@ -66,11 +66,10 @@ public class Metadata_page extends Base_page {
     public void download_metadata_object(){
         BrowserUtils.waitFor(3);
         String first_object_name=metadata_objects.get(1).getText();
+        System.out.println(first_object_name);
         metadata_objects.get(1).click();
         BrowserUtils.waitFor(3);
-       // Driver.get().switchTo().alert().accept();
 
-        BrowserUtils.waitFor(5);
         File folder=new File(System.getProperty("user.dir"));
         File[] list_of_files=folder.listFiles();
         boolean found=false;
@@ -80,7 +79,7 @@ public class Metadata_page extends Base_page {
                 String file_name2=list_of_file.getName();
 
 
-                if(file_name2.contains("Unconfirmed")){
+                if(file_name2.contains("Unconfirmed")||file_name2.contains(first_object_name)){
                     System.out.println("file "+first_object_name+ " is downloaded");
                     f=new File(file_name2);
                     found=true;
