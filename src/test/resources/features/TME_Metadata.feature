@@ -1,4 +1,4 @@
-Feature: Metadata
+Feature: TME Metadata
 
   @tme @smoke
   Scenario:Metadata Object Download

@@ -9,7 +9,7 @@ Feature: TME LIM Page
     And selects from dropdown
     Then user should see language options
       | Czech      |
-      | Dan    |
+      | Danish    |
       | Dutch      |
       | Finnish    |
       | Greek      |

@@ -1,6 +1,6 @@
-Feature: SIL
+Feature: TME SIL
 
-  @sil
+  @tme @smoke
   Scenario: Sil page columns and csv download check
 
     Given the user is on the login page

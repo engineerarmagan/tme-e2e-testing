@@ -14,12 +14,17 @@ public class TMNA_Api extends Base_page {
         public void before() {
             baseURI= ConfigurationReader.get("tmna_postman_URL");
         }
-        String folder_name="";
-        public void import_to_tmna(){
+
+    public static void main(String[] args) {
+
+
+    String publication_name="22Tundra-HV-Tundra_NM40P0U_EN_22-02-10_UX";
+        //public void post_import(){
 
             String username="karenkelly";
             String password="M0uchamps";
-            String text_body="upload/"+folder_name+"/"+folder_name+".met";
+
+            String text_body="upload/"+publication_name+"/"+publication_name+".met";
             Response response=  given().log().all()
                     .accept(ContentType.TEXT)
                     .and()

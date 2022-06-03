@@ -1,6 +1,6 @@
-Feature: Source to target languages
+Feature: TME Source to target languages
 
- @smoke
+ @tme @smoke
   Scenario: Source to target languages columns
 
     Given the user is on the login page

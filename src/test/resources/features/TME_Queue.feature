@@ -1,6 +1,6 @@
-Feature: Queue
-@smoke
-  Scenario: Queue Columns
+Feature: TME Queue
+@tme @smoke
+  Scenario: Queue columns
 
     Given the user is on the login page
     When the user enters the credentials
@@ -13,6 +13,7 @@ Feature: Queue
       | Language   |
       | Status     |
 
+  @tme @smoke
   Scenario: Change the queue priority
 
     Given the user is on the login page

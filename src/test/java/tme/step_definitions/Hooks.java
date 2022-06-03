@@ -33,4 +33,5 @@ public class Hooks {
         System.out.println("this is before");
          Driver.get().manage().window().maximize();
 
-    }}
+    }
+ }

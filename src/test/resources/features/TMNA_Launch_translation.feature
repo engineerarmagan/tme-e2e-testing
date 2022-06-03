@@ -1,5 +1,7 @@
 Feature: TMNA Translation
-@tmna @regression
+@tmna @wip
+
+
 Scenario: Translation
 
 Given the user is on the TMNA login page
@@ -8,8 +10,8 @@ When the user navigates to "HISTORY"
 And filters status "PROCESSED"
 Then filters language "EN"
 
-Given user filters publication type "BRM"
-And put the alternate pub id
+Given user filters publication type "NCF"
+#And put the alternate pub id
 And filters
 When selects first from the list
 Then click translation status

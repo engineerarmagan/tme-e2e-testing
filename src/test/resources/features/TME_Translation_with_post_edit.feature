@@ -1,7 +1,7 @@
 
 # only BRM,NCF,RM publication types
-Feature: Translation with post edit
-@post
+Feature: TME Translation with post edit
+@tme @regression
 Scenario: Translation with Post Edit process
 
 Given the user is on the login page

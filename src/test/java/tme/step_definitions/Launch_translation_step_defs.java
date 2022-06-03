@@ -72,6 +72,7 @@ public class Launch_translation_step_defs {
     }
     @Then("approves the translation cost for specific CPID")
     public void approvesTheTranslationCostForSpecificCPID() {
+        new Stage_details_page().click_view_costs();
         BrowserUtils.waitFor(2);
         new Cost_approval_page().approve_cost_for_specific_CPID();
         BrowserUtils.waitFor(3);
@@ -106,7 +107,7 @@ new Xtm_dashboard_page().XTM_project_url();
     @Given("user navigates to URL")
     public void userNavigatesTo() {
         System.out.println("user should navigate to stage detail url");
-        Driver.get().get("https://dev.e2e-toyota.com/dashboard#/status/NM39K0~0~EN~fe5f8e3f-7e77-440f-b952-6698a3e00d1ad~ES~T2~2/bZ4X/NM39K0/0");
+        Driver.get().get("https://systest.e2e-tmna.com/dashboard#/detail/NM40P1U~1~EN~22Tundra-HV-Tundra_NM40P0U_EN_22-02-10_UX~ES~T2~1");
         System.out.println(Driver.get().getCurrentUrl()) ;
     BrowserUtils.waitFor(3);
     }

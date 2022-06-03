@@ -10,9 +10,9 @@ Scenario:Midtest
   Then user checks the status
  # Then user should ask for Post Edit
 
-@mid_cost_approval
+@midtest
   Scenario: Midtest cost approval
-  Given the user is on the login page
+  Given the user is on the TMNA login page
   When the user enters the credentials
   Then the user should be able to login
 
