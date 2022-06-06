@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import tme.pages.History_page;
+import tme.pages.Import_publications;
 import tme.pages.Stage_details_page;
 
 public class Import_step_defs {
@@ -27,6 +28,14 @@ public class Import_step_defs {
     @And("filters stage {string}")
     public void filtersStage(String type) {
     new History_page().selects_stage_type(type);
+
+    }
+
+    @Given("user imports publication type {string}")
+    public void userImportsPublicationType(String type) {
+        new Import_publications().get_files_inside_the_folder(type);
+        new Import_publications().rename_file(type);
+        new Import_publications().upload_to_S3();
 
     }
 }

@@ -1,4 +1,11 @@
 package tme.pages;
+
+
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Maintest {
     static String bir="ali";
     static String iki="veli";
@@ -14,5 +21,9 @@ public class Maintest {
         }}
     private void method1(){System.out.println("birinci method");}
     private void method2(){System.out.println("ikinci method");}
-    private void method3(){System.out.println("ucuncu method");}
-}
+    private void method3(){System.out.println("ucuncu method");}}
+
+
+
+
+

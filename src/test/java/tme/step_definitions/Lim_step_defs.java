@@ -1,9 +1,10 @@
 package tme.step_definitions;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import tme.pages.Dashboard_page;
+import tme.pages.Import_publications;
 import tme.pages.Lim_page;
 import tme.utilities.BrowserUtils;
 
@@ -30,4 +31,10 @@ public class Lim_step_defs {
         System.out.println("actual_languages=" + actual_languages);
     }
 
+//    @Given("user changes file name")
+//    public void userChangesFileName() {
+//        new Import_publications().get_files_inside_the_folder();
+//        new Import_publications().rename_file(String type);
+//        new Import_publications().upload_to_S3();
+//    }
 }

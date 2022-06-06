@@ -18,5 +18,8 @@ Scenario:Midtest
 
   When user navigates to URL
   Then approves the translation cost for specific CPID
+  @rename
+  Scenario: change file name
+    Given user changes file name
 
 
