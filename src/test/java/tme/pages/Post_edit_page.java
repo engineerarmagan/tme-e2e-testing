@@ -44,7 +44,8 @@ public class Post_edit_page {
     @FindBy(xpath="//div[normalize-space()='Current']//preceding-sibling::div/span")
     public WebElement current_translation_quality;
 
-
+    @FindBy(xpath=" //tr[2]/td[1]/following-sibling::td[7]/input")
+    public WebElement general_checkbox;
 
     public void get_post_edit_details(){
         post_edit_button.click();
@@ -64,13 +65,15 @@ public class Post_edit_page {
         BrowserUtils.waitFor(3);
         edit_button.click();
         System.out.println("clicked edit buttton");
-        select_all_for_PE.click();
-        BrowserUtils.waitFor(1);
-        select_all_for_PE.click();
+        BrowserUtils.waitFor(2);
+//        select_all_for_PE.click();
+//        BrowserUtils.waitFor(1);
+//        select_all_for_PE.click();
+//        BrowserUtils.waitFor(3);
+        //select_part_for_PE.click();
+        general_checkbox.click();
         BrowserUtils.waitFor(3);
-        select_part_for_PE.click();
-        BrowserUtils.waitFor(3);
-        System.out.println("selected all");
+        System.out.println("selected general");
         save_button.click();
         BrowserUtils.waitFor(3);
         System.out.println("saved");

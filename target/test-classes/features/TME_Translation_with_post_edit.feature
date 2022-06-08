@@ -1,7 +1,7 @@
 
 # only BRM,NCF,RM publication types
 Feature: TME Translation with post edit
-@tme @regression
+@tme @wip
 Scenario: Translation with Post Edit process
 
 Given the user is on the login page
@@ -24,7 +24,9 @@ And clear the filter
 Then selects first from the list
 Then user gets CPID and project name
 
-Given the user is on XTM login page
+  Given user checks and completes the required actions
+
+When the user is on XTM login page
 And enter the XTM credentials
 Then user should able to login to XTM
 

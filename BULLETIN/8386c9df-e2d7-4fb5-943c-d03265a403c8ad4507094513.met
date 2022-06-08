@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<content-package-metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="e2e/metadata.xsd">
+    <package-identification>
+        <source>TME</source>
+        <type>BULLETIN</type>
+        <format>XML</format>
+        <upload_type>AUTO</upload_type>
+        <upload_location>COMPONIZE</upload_location>
+        <import-filename>BE-00694T-TME.zip</import-filename>
+        <import-filename-type>ZIP</import-filename-type>
+        <target-filename>8386c9df-e2d7-4fb5-943c-d03265a403c8.zip</target-filename>
+    </package-identification>
+    <generic-metadata>
+        <language>EN</language>
+        <incremental-lifecycle>FALSE</incremental-lifecycle>
+        <publication-id>BE-00694T-TME</publication-id>
+        <release date="99991231">
+            <production-date>999912</production-date>
+            <type-of-content>BASE</type-of-content>
+            <alternate-publication-id>BE-00694T-TME</alternate-publication-id>
+            <increment>0</increment>
+            <increment-version>1</increment-version>
+        </release>
+    </generic-metadata>
+    <source-specific-metadata-0005>
+        <bulletinType>TSB</bulletinType>
+        <targetAudience>PUBLIC</targetAudience>
+        <brand>TOYOTA</brand>
+        <model>
+            <model-name>RAV4 Plug-in Hybrid</model-name>
+            <model-code code="AXAP54"/>
+        </model>
+        <model>
+            <model-name>RAV4</model-name>
+            <model-code code="AXAA52"/>
+            <model-code code="AXAA54"/>
+            <model-code code="AXAH52"/>
+            <model-code code="AXAH54"/>
+            <model-code code="AXAL52"/>
+            <model-code code="AXAL54"/>
+            <model-code code="MXAA52"/>
+            <model-code code="MXAA54"/>
+        </model>
+        <features></features>
+        <targetLanguages>
+            <targetLanguage>DE</targetLanguage>
+            <targetLanguage>ES</targetLanguage>
+            <targetLanguage>CS</targetLanguage>
+            <targetLanguage>DA</targetLanguage>
+            <targetLanguage>FI</targetLanguage>
+            <targetLanguage>FR</targetLanguage>
+            <targetLanguage>EL</targetLanguage>
+            <targetLanguage>HU</targetLanguage>
+            <targetLanguage>IT</targetLanguage>
+            <targetLanguage>NL</targetLanguage>
+            <targetLanguage>NO</targetLanguage>
+            <targetLanguage>PL</targetLanguage>
+            <targetLanguage>PT</targetLanguage>
+            <targetLanguage>RU</targetLanguage>
+            <targetLanguage>SV</targetLanguage>
+            <targetLanguage>TR</targetLanguage>
+        </targetLanguages>
+        <shortSummary></shortSummary>
+        <title>19 DCM : Knocking noise heard during Bluetooth phone call</title>
+        <bulletinCategories>
+            <bulletinCategory>BODY_ELECTRIC</bulletinCategory>
+        </bulletinCategories>
+        <marketSpecification>0</marketSpecification>
+        <markets>
+            <market>TGS</market>
+            <market>TES</market>
+            <market>TAU</market>
+            <market>TTK</market>
+            <market>TCY</market>
+            <market>TMKZ</market>
+            <market>TRO</market>
+            <market>TPL</market>
+            <market>TBA</market>
+            <market>TPO</market>
+            <market>TNL</market>
+            <market>TNO</market>
+            <market>TDG</market>
+            <market>TMCZ</market>
+            <market>TDK</market>
+            <market>TFO</market>
+            <market>THU</market>
+            <market>TFR</market>
+            <market>TBU</market>
+            <market>TMA</market>
+            <market>TUK</market>
+            <market>TGB</market>
+            <market>TIC</market>
+            <market>TMI</market>
+            <market>TBEL</market>
+            <market>TML</market>
+            <market>TCA</market>
+            <market>TAB</market>
+            <market>TAD</market>
+            <market>TIL</market>
+            <market>TMR</market>
+            <market>TCH</market>
+            <market>TSW</market>
+            <market>TCI</market>
+            <market>TIR</market>
+            <market>TGR</market>
+        </markets>
+        <embargoDate>20220208</embargoDate>
+        <priority>Normal</priority>
+        <requiresTechnicianAcknowledgment>FALSE</requiresTechnicianAcknowledgment>
+    </source-specific-metadata-0005>
+</content-package-metadata>

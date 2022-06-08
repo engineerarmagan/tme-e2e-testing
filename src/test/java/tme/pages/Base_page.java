@@ -108,16 +108,17 @@ public abstract class Base_page {
         if (type.equals("RM")){
             String pub_type = "(//span[contains(text(),'" + type + "')])[2]";
             WebElement publication_type = Driver.get().findElement(By.xpath(pub_type));
-            pub_type_for_project_name=publication_type.getText();
             new Actions(Driver.get()).moveToElement(publication_type).click(publication_type).build().perform();
+            pub_type_for_project_name=publication_type.getText();
             BrowserUtils.waitFor(2);
         }
         else
         {
+            System.out.println("pub type check");
         String pub_type = "//span[contains(text(),'" + type + "')]";
         WebElement publication_type = Driver.get().findElement(By.xpath(pub_type));
-        pub_type_for_project_name=publication_type.getText();
         new Actions(Driver.get()).moveToElement(publication_type).click(publication_type).build().perform();
+        pub_type_for_project_name=publication_type.getText();
         BrowserUtils.waitFor(2);
 }
 

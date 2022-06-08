@@ -1,6 +1,6 @@
 Feature: TME Event History Page
 
-@smoke
+@tme @smoke
   Scenario: Event History columns and filtering
 
     Given the user is on the login page

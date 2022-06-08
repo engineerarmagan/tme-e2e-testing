@@ -4,6 +4,7 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 import tme.utilities.BrowserUtils;
+import tme.utilities.ConfigurationReader;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,8 +34,7 @@ static String new_met_path;
         List<String> files=subPaths.filter(Files::isRegularFile).map(Objects::toString).collect(Collectors.toList());
         zip_path= files.get(1);
         met_path = files.get(0);
-        System.out.println("zip_path="+zip_path);
-        System.out.println("met_path="+met_path);
+
     } catch (IOException e) {
         e.printStackTrace();
     }
@@ -52,9 +52,9 @@ static String new_met_path;
         String separator = "\\";
         String zip_old_file_name = zip_path.replaceAll(Pattern.quote(separator), "\\\\").split(type+"\\\\")[1].split("ad")[0];
         String zip_new_file_name=zip_old_file_name+"ad"+date+".zip";
-        System.out.println("zip new file name="+zip_new_file_name);
+
         new_zip_path=zip_path.split(type)[0]+type+"\\"+zip_new_file_name;
-        System.out.println("new_zip_path = " + new_zip_path);
+
 
         //change zip file name
         File oldFile=new File(zip_path);
@@ -71,7 +71,7 @@ static String new_met_path;
         System.out.println("met new file name="+met_new_file_name);
 
         new_met_path=met_path.split(type)[0]+type+"\\"+met_new_file_name;
-        System.out.println("new_met_path = " + new_met_path);
+
         folder_name=met_old_file_name+"ad"+date;
 
         //change met file name
@@ -86,12 +86,13 @@ static String new_met_path;
 
 }
     public void upload_to_S3(){
-          System.setProperty("aws.accessKeyId", "ASIATAMOP7BAS7SRYQJT");
-          System.setProperty("aws.secretAccessKey", "usNoS5UNbgJSHGQdYJQWI+w2FAhKWIgv5plsrIMo");
-          System.setProperty("aws.sessionToken", "IQoJb3JpZ2luX2VjEMH//////////wEaCWV1LXdlc3QtMSJGMEQCIFWcNkYRy2rwBzreDhFFW6rn94XHlS0noqQ+yI3ccH4vAiA1hh/5RLTQ4JPc94NezllpULEjLK89E6sXHPLCPJ+NHyqvAwi5//////////8BEAQaDDIwNjk5NDE0MzI5NyIMk/stSvofjPXXaCieKoMDAL6qN/bKWIhvLUJvPdikqC9kPaFHai+pAkjcXMgYFlIjgkjLxQhTDojyuD3B9nHmnqYl4KxqFTL+t6Yv0cYSB4oiUMDI5PyT9orX42XYbLmu7XYoTDVDjtBYy8njvCiA1CqXfMx0lIH20g+IIr4zwQ9vfbegnU0973CmVr60u+Z0k6LnuR2UgHcwdMvbVWbE0cJgQTo5Z44v3V3v2wvy25sLM5ZE6QKgfRKDuux4D7sm4onCNgNPO7QH8iYUx2d3HWgw6mRTb3m+TAXV0y6lyAtzcJD2gzQVEIjYbpeXf3+aLmE8fijctww0nuEdnwmLNcNXGiPyvxfn2ACkZNA703yCH5qM5gMryzK3nu7TvCsLn3VauVNmssIgoVWZooPZZo4Qk3qgiTRsl+uIMzCJ4Yg9FsOc04bZIboLkNI31jOWBGow4vNfTNGY3WZYCF32Hx55hUI6ORlX7uA1hKdLaAKNxsO7s7AU6Did5yvtF7/hAuPCb4DvUt1tOjUgHRzmfKQ+MPvw9pQGOqcB4S7J2neLA201KnsPzCHIUkjOviARhaLto6tEmx1itBCtKhGxK4qnylNhTz0/AFytv9X0Ra2DvvnsOzzCCbYmVqftGlqnD+EnFEsxGyi1wDSTkUI5rfN3BP23qNAAa+97V+c0f1GuRHGc6yFEkPxsINmNg0OSvgm5aCN4VVetvTnCbMVyxfzLl10zrZ0+7UckGSzAIAfYMu2vnsW70QVRC827+Dnob0c=");
+          System.setProperty("aws.accessKeyId", "ASIATAMOP7BA36KSVO6U");
+          System.setProperty("aws.secretAccessKey", "r62wDBzKGBH9NWTrnsd+x/6VHRN/gIOGL5Yw1pSm");
+          System.setProperty("aws.sessionToken", "IQoJb3JpZ2luX2VjENj//////////wEaCWV1LXdlc3QtMSJHMEUCIDvo2mkKesKnnuZviL5adV5xQO7X3mYTxBOc37UCkGIDAiEA18KS1HXxlxHNJ3WCJu+BRXpBEtRglCb60TChQ3E+7N8qrwMI0f//////////ARAEGgwyMDY5OTQxNDMyOTciDEu8aWaB9+BocygkpSqDA2iciLNqf8uuj/+3TID0FoDJZCBh2RNgTgXNWeq/a/AgAxg2itnTBLqTFxMeL8NZRqRTyMZNqYhspDwnneA+uUP9RFe8UOr+Kfc64MMeFfER8qmjWKDHI8LfxMKPNPeeP0TUhKENMWY2bhcBGrZPtKa7EELvtebkZBfvcMrsadgO8yNKI++u8GfPT1gksUhJiOYPVUEQN1OsJhDwfyTSa3LxeiWljs0Pt6yjdtdgFuK+ABglS+u2VAlLDh2ywtfs7JLQNLGG2O2QXEz76qlKSkmhwWXbBrWD6fkhNbvGgOI3YPHAdTYRJdx/1gfyoRDCtZP8r3nTjrNGBzcdghED9eAoWqT/qBj7whL7DwSEOE9MgHF8Fq6BJfyYO6gOWODRouztepw2n4Y6dcJq5m1+V4C4gbyX8zNFcB3eWqbo9NNqqRIi38nh/jDVGjaiRIjyOk9kY9RzONv7gbt+h5oJzn93GBCgxrzewuumBqwcu3mHbZzXou6Sx2GMA5LqMc9F88E75DCCjPyUBjqmAWYxyX3aLe+Qp9rxvNMp9J1DeBlqhWXe58pV0Vp2blH+UUPXFbL71DnCgNGu2BUPVsmz8jwCZAAPOUjPc2tXTQ86t0fNUIqiqVVu8Xz5+VZvJXI90d7kfmb1VgZbrn0xoSjZNvUQc11msE184OKY0iaCsVWedqFHD7k5xg6wiSBYnXmdRRA/+05tsPJube6EIwwIbqUSUC1mNNqW3ResuDZfqvngIMY=");
           System.setProperty("aws.region", "eu-west-1");
 
-    String bucketName = "com.entitygroup.nge2e.dev.import";
+   // String bucketName = "com.entitygroup.nge2e.dev.import";
+    String bucketName= ConfigurationReader.get("bucketname");
 
     String keyzip = "upload/" + folder_name + "/" + Paths.get(new_zip_path).getFileName().toString();
     String keymet = "upload/" + folder_name + "/" + Paths.get(new_met_path).getFileName().toString();
@@ -115,7 +116,7 @@ static String new_met_path;
                   .build();
     PutObjectResponse putObjectResponsemet = s3Client.putObject(putObjectRequestmet, Paths.get(new_met_path));
           System.out.println("met uploded=" + putObjectResponsemet.sdkHttpResponse().isSuccessful());
-        BrowserUtils.waitFor(60);
+        BrowserUtils.waitFor(120);
 }
 
 

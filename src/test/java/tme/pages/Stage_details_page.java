@@ -1,8 +1,10 @@
 package tme.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.SourceType;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,9 +31,13 @@ public class Stage_details_page extends Base_page {
     public WebElement safety_terms_updated_button;
     @FindBy(xpath = "//span[normalize-space()='Image review']")
     public WebElement image_review_button;
-    @FindBy(xpath = "//input[@id='mat-slide-toggle-2-input']")
+    @FindBy(xpath = "//td[contains(text(),'QA by Value Chain')]//following-sibling::td//input")
+    public WebElement QA_toggle_input;
+    @FindBy(xpath = "//td[contains(text(),'Block at Publish')]//following-sibling::td//input")
+    public WebElement block_at_publish_toggle_input;
+    @FindBy(xpath = "//td[contains(text(),'QA by Value Chain')]//following-sibling::td//mat-slide-toggle")
     public WebElement QA_toggle;
-    @FindBy(xpath = "//input[@id='mat-slide-toggle-1-input']")
+    @FindBy(xpath = "//td[contains(text(),'Block at Publish')]//following-sibling::td//mat-slide-toggle")
     public WebElement block_at_publish_toggle;
     @FindBy(xpath = "//td[contains(text(),'Stage')]//following-sibling::td")
     public WebElement Stage;
@@ -49,7 +55,16 @@ public class Stage_details_page extends Base_page {
     public WebElement metadata_approval_required;
     @FindBy(xpath = "//button[normalize-space()='Revalidate & Approve Metadata']")
     public WebElement revalidate_metadata_button;
+    @FindBy(xpath = "//button[contains(text(),'Re-Import')]")
+    public WebElement re_import_button;
+
+    @FindBy(xpath = "//div[contains(text(),'Message: Internal Error')]")
+    public WebElement internal_error;
+    @FindBy(xpath = " //button[contains(text(),'Acknowledge')]")
+    public WebElement acknowledge_button;
+
     static int minute=0;
+    static int processing=0;
     static String fail_reason="";
 
     public Stage_details_page() {
@@ -58,31 +73,43 @@ public class Stage_details_page extends Base_page {
 
     public void translation_with_QA() {
         System.out.println("translation with QA");
-        String QA_status = QA_toggle.getAttribute("aria-checked");
+        String QA_status = QA_toggle_input.getAttribute("aria-checked");
         System.out.println(QA_status);
         if (QA_status.equals("false")) {
             new Actions(Driver.get()).moveToElement(QA_toggle).click().build().perform();
         }
+       Assert.assertTrue(QA_status.equals("true"));
     }
 
     public void translation_without_QA() {
         System.out.println("translation without QA");
-        String QA_status = QA_toggle.getAttribute("aria-checked");
+        String QA_status = QA_toggle_input.getAttribute("aria-checked");
+        System.out.println(QA_status);
         if (QA_status.equals("true")) QA_toggle.click();
     }
 
     public void block_at_publish() {
-        String block_status = block_at_publish_toggle.getAttribute("aria-checked");
+        String block_status = block_at_publish_toggle_input.getAttribute("aria-checked");
         if (block_status.equals("false")) {
            new Actions(Driver.get()).moveToElement(block_at_publish_toggle).click().build().perform();
         }
     }
 
     public void dont_block_at_publish() {
-        String block_status = block_at_publish_toggle.getAttribute("aria-checked");
-        if (block_status.equals("true"))
-            new Actions(Driver.get()).moveToElement(block_at_publish_toggle).click().build().perform();
-    }
+        String block_status = block_at_publish_toggle_input.getAttribute("aria-checked");
+        System.out.println("block status="+block_status);
+        if (block_status.equals("true")){
+            System.out.println("block status is true should click");
+        BrowserUtils.waitFor(5);
+            new Actions(Driver.get()).moveToElement(block_at_publish_toggle).click(block_at_publish_toggle).build().perform();
+        System.out.println("clicked to turn off");
+     }else{
+            System.out.println("block status is false, nothing to do");
+        }}
+
+
+
+
 
    public void approve_metadata(){
         approve_metadata_button.click();
@@ -104,13 +131,17 @@ public class Stage_details_page extends Base_page {
         String status = Status.getText();
         System.out.println(stage);
         System.out.println(status);
-
+        if (stage.contains("IMPORT") && status.contains("WAITING")) import_waiting();
+        if (stage.contains("IMPORT") && status.contains("PROCESSING")) import_processing();
         if (stage.contains("EXTRACT") && status.contains("WAITING")) extract_waiting();
+        if (stage.contains("EXTRACT") && status.contains("PROCESSING")) extract_processing();
+        if (stage.contains("CONVERT") && status.contains("PROCESSING")) convert_processing();
         if (stage.contains("PRETRANSLATE") && status.contains("WAITING")) click_view_costs();
         if (stage.contains("TRANSLATE") && status.contains("PROCESSING") && minute<60) translate_processing();
         if (stage.contains("TRANSLATE") && status.contains("PROCESSING") && minute==60) translation_failure();
         if (stage.contains("IMAGE_REVIEW") && status.contains("WAITING")) image_review_waiting();
         if (stage.contains("PUBLISH")&& status.contains("PROCESSING")) publish_processing();
+        if (stage.contains("PUBLISH")&& status.contains("WAITING")) publish_waiting();
         if (stage.contains("PUBLISH")&& status.contains("BLOCKED")) translation_completed();
         if (stage.equalsIgnoreCase("PREQA") && status.contains("PROCESSING")) preqa_processing();
         if (stage.equalsIgnoreCase("QA") && status.contains("WAITING")) qa_waiting();
@@ -118,6 +149,79 @@ public class Stage_details_page extends Base_page {
         if (stage.equalsIgnoreCase("QA") && status.contains("PUBLISHED")) qa_publishedt();
 
     }
+    public void required_action_check() {
+        int minute=0;
+        BrowserUtils.waitFor(30);
+        System.out.println("required action check");
+        Driver.get().navigate().to(stage_details_url);
+        BrowserUtils.waitFor(2);
+        String stage = Stage.getText();
+        String status = Status.getText();
+
+        if (stage.contains("PRETRANSLATE") && status.contains("WAITING"))
+             {
+                 if (LIM_button.isDisplayed())
+                    {
+                         LIM_button.click();
+                         new Lim_page().update_lim();
+                         Driver.get().navigate().to(stage_details_url);
+                         BrowserUtils.waitFor(2);
+                        lim_updated_button.click();
+                        BrowserUtils.waitFor(4);
+                     }
+                 else acknowledge_button.click();
+             }
+
+        if (stage.contains("PRETRANSLATE") && status.contains("ERRORED")) {
+            System.out.println("there is an error, test should fail");
+            Assert.assertFalse(internal_error.isDisplayed());
+        }
+        if(stage.contains("PRETRANSLATE") && status.contains("PROCESSING")&&processing<3)
+        {   processing ++;
+            System.out.println("pretranslate processing , continue");
+            Driver.get().navigate().to(stage_details_url);
+            required_action_check();
+        }
+        else{
+            System.out.println("continue");
+        }
+    }
+
+
+
+
+
+
+    private void publish_waiting() {
+        BrowserUtils.waitFor(60);
+        Driver.get().navigate().refresh();
+        stage_status_check();
+    }
+
+    private void extract_processing() {
+        BrowserUtils.waitFor(60);
+        Driver.get().navigate().refresh();
+        stage_status_check();
+    }
+
+    private void convert_processing() {
+        BrowserUtils.waitFor(60);
+        Driver.get().navigate().refresh();
+        stage_status_check();
+    }
+
+    private void import_processing() {
+        BrowserUtils.waitFor(30);
+        Driver.get().navigate().refresh();
+        stage_status_check();
+    }
+
+    private void import_waiting() {
+        BrowserUtils.waitFor(2);
+         re_import_button.click();
+         stage_status_check();
+    }
+
     private void translate_processing() {
 
         BrowserUtils.waitFor(60);
@@ -135,6 +239,7 @@ public class Stage_details_page extends Base_page {
         BrowserUtils.waitFor(5);
         new Image_review_page().image_check();
         new Image_review_page().leave_image_review_page();
+        BrowserUtils.waitFor(2);
         stage_status_check();
     }
     public void publish_processing(){
@@ -204,10 +309,10 @@ public class Stage_details_page extends Base_page {
         }
         if(stage.equalsIgnoreCase("TRANSLATE") && status.contains("PROCESSING")){
 
-            System.out.println("translate processing ,no cost, go and finish the project");
+            System.out.println("Cost below threshold - automatically approved");
         }
         else{
-            System.out.println("else no cost, go and finish the project");
+            System.out.println("else,Cost below threshold - automatically approved");
         }
     }
 
@@ -250,7 +355,15 @@ public class Stage_details_page extends Base_page {
 
     public void extract_waiting() {
         if (approve_metadata_button.isDisplayed()) approve_metadata_button.click();
-        if (revalidate_metadata_button.isDisplayed()) revalidate_metadata();
+
+        //if (revalidate_metadata_button.isDisplayed()) revalidate_metadata();
+        else {
+            System.out.println("inside extract waiting else");
+            Driver.get().navigate().refresh();
+        }
+        BrowserUtils.waitFor(60);
+        Driver.get().navigate().to(stage_details_url);
+        stage_status_check();
     }
 
 

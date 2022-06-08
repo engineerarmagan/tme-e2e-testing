@@ -1,5 +1,5 @@
 Feature: TMNA Translation
-@tmna @wip
+@tmna
 
 
 Scenario: Translation

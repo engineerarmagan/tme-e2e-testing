@@ -205,4 +205,11 @@ new Xtm_dashboard_page().XTM_project_url();
         BrowserUtils.waitFor(300);
 
     }
+
+    @Given("user checks and completes the required actions")
+    public void userChecksAndCompletesTheRequiredActions() {
+
+    new Stage_details_page().required_action_check();
+
+    }
 }

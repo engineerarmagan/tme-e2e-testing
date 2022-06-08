@@ -41,12 +41,21 @@ public class Cost_approval_page {
         String current_url=Driver.get().getCurrentUrl();
         System.out.println(current_url);
         if(current_url.contains("toyota"))
-            System.out.println("url contains toyota");
-            { s.findElement(By.xpath("following-sibling::td[15]")).click();}
+            { System.out.println("url contains toyota");
+               if(Base_page.pub_type_for_project_name.equals("BULLETIN"))
+                        {
+                            System.out.println("bulletin type cost approval");
+                   s.findElement(By.xpath("following-sibling::td[9]")).click();
+                        }
+               else {
+                   System.out.println("non bulletin type cost approval");
+                   s.findElement(By.xpath("following-sibling::td[15]")).click();
+                    }
+            }
+
         if(current_url.contains("tmna")){
             System.out.println("url contains tmna");
             s.findElement(By.xpath("following-sibling::td[18]")).click();
-
         }
         System.out.println("checkbox should be clicked now ");
         System.out.println("approve_button is displayed="+ approve_button.isDisplayed());

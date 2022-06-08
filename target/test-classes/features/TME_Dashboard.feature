@@ -5,7 +5,7 @@ Feature: TME Dashboard Page
     Given the user is on the login page
     When the user enters the credentials
     Then user should see following options
-      | System  |
+      | System |
       | Utilities |
       | SIL       |
       | Queue     |
