@@ -1,7 +1,7 @@
 
 # only BRM,NCF,RM publication types
 Feature: TMNA Translation with post edit
-  @tmna @regression
+  @wiptmna
   Scenario: Translation with Post Edit process
 
     Given the user is on the TMNA login page
@@ -21,7 +21,7 @@ Feature: TMNA Translation with post edit
     Then selects first from the list
     Then user gets CPID and project name
 
-    Given the user is on XTM login page
+    Given the user is on TMNA XTM login page
     And enter the XTM credentials
     Then user should able to login to XTM
 
@@ -33,7 +33,7 @@ Feature: TMNA Translation with post edit
     Given user navigates to stage details page
     And user should ask for Post Edit
 
-    Given the user is on XTM login page
+    Given the user is on TMNA XTM login page
     And enter the XTM credentials
     Then user should able to login to XTM
 

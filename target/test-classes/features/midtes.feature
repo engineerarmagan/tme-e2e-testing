@@ -23,3 +23,8 @@ Scenario:Midtest
     Given user changes file name
 
 
+  @tmnaapi
+  Scenario: import tmna
+    Given user imports tmna
+
+

@@ -44,6 +44,12 @@ public class Login_step_defs {
         Driver.get().get(xtm_url);
 
     }
+    @When("the user is on TMNA XTM login page")
+    public void the_user_is_on_TMNA_xtm_login_page() {
+        String xtm_url= ConfigurationReader.get("tmna_xtm_url");
+        Driver.get().get(xtm_url);
+
+    }
     @When("enter the XTM credentials")
     public void enter_the_xtm_credentials() {
         String client=ConfigurationReader.get("xtm_client");

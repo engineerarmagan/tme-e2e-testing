@@ -1,5 +1,5 @@
 Feature: TME Dashboard Page
-@tme @smoke
+@tme @smoke1
   Scenario:Dashboard menu options check
 
     Given the user is on the login page
@@ -11,7 +11,7 @@ Feature: TME Dashboard Page
       | Queue     |
       | History   |
 
-@tme @smoke
+@tme @smoke1
   Scenario: Dashboard columns check
     Given the user is on the login page
     When the user enters the credentials

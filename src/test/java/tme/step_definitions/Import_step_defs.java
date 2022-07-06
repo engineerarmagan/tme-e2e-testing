@@ -3,9 +3,7 @@ package tme.step_definitions;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import tme.pages.History_page;
-import tme.pages.Import_publications;
-import tme.pages.Stage_details_page;
+import tme.pages.*;
 
 public class Import_step_defs {
     @And("check metadata status")
@@ -37,5 +35,17 @@ public class Import_step_defs {
         new Import_publications().rename_file(type);
         new Import_publications().upload_to_S3();
 
+    }
+    @Given("user imports TMNA publication type {string}")
+    public void userImportsTMNAPublicationType(String type) {
+        new TMNA_S3_import().get_files_inside_the_folder(type);
+        new TMNA_S3_import().rename_file(type);
+        new TMNA_S3_import().upload_to_S3();
+
+    }
+
+    @Given("user imports tmna")
+    public void userImportsTmna() {
+        new TMNA_Api().upload_tmna();
     }
 }

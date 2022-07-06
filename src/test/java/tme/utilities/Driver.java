@@ -42,6 +42,11 @@ public class Driver {
                     break;
                 case "chrome-headless":
                     WebDriverManager.chromedriver().setup();
+                    HashMap<String, Object> chromePrefs_less = new HashMap<String, Object>();
+                    chromePrefs_less.put("profile.default_content_settings.popups", 0);
+                    chromePrefs_less.put("download.default_directory", System.getProperty("user.dir"));
+                    ChromeOptions options_less = new ChromeOptions();
+                    options_less.setExperimentalOption("prefs", chromePrefs_less);
                     driver = new ChromeDriver(new ChromeOptions().setHeadless(true).addArguments("window-size=1920,1080"));
                     break;
                 case "firefox":

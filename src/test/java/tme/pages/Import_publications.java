@@ -45,7 +45,7 @@ static String new_met_path;
         //get current date and time
         Date currenDate=new Date();
         System.out.println(currenDate);
-        SimpleDateFormat dateFormat=new SimpleDateFormat("mmddhhmmss");
+        SimpleDateFormat dateFormat=new SimpleDateFormat("ddMMhhmmss");
         String date=dateFormat.format(currenDate);
 
         //get zip file name and path
@@ -86,9 +86,9 @@ static String new_met_path;
 
 }
     public void upload_to_S3(){
-          System.setProperty("aws.accessKeyId", "ASIATAMOP7BA36KSVO6U");
-          System.setProperty("aws.secretAccessKey", "r62wDBzKGBH9NWTrnsd+x/6VHRN/gIOGL5Yw1pSm");
-          System.setProperty("aws.sessionToken", "IQoJb3JpZ2luX2VjENj//////////wEaCWV1LXdlc3QtMSJHMEUCIDvo2mkKesKnnuZviL5adV5xQO7X3mYTxBOc37UCkGIDAiEA18KS1HXxlxHNJ3WCJu+BRXpBEtRglCb60TChQ3E+7N8qrwMI0f//////////ARAEGgwyMDY5OTQxNDMyOTciDEu8aWaB9+BocygkpSqDA2iciLNqf8uuj/+3TID0FoDJZCBh2RNgTgXNWeq/a/AgAxg2itnTBLqTFxMeL8NZRqRTyMZNqYhspDwnneA+uUP9RFe8UOr+Kfc64MMeFfER8qmjWKDHI8LfxMKPNPeeP0TUhKENMWY2bhcBGrZPtKa7EELvtebkZBfvcMrsadgO8yNKI++u8GfPT1gksUhJiOYPVUEQN1OsJhDwfyTSa3LxeiWljs0Pt6yjdtdgFuK+ABglS+u2VAlLDh2ywtfs7JLQNLGG2O2QXEz76qlKSkmhwWXbBrWD6fkhNbvGgOI3YPHAdTYRJdx/1gfyoRDCtZP8r3nTjrNGBzcdghED9eAoWqT/qBj7whL7DwSEOE9MgHF8Fq6BJfyYO6gOWODRouztepw2n4Y6dcJq5m1+V4C4gbyX8zNFcB3eWqbo9NNqqRIi38nh/jDVGjaiRIjyOk9kY9RzONv7gbt+h5oJzn93GBCgxrzewuumBqwcu3mHbZzXou6Sx2GMA5LqMc9F88E75DCCjPyUBjqmAWYxyX3aLe+Qp9rxvNMp9J1DeBlqhWXe58pV0Vp2blH+UUPXFbL71DnCgNGu2BUPVsmz8jwCZAAPOUjPc2tXTQ86t0fNUIqiqVVu8Xz5+VZvJXI90d7kfmb1VgZbrn0xoSjZNvUQc11msE184OKY0iaCsVWedqFHD7k5xg6wiSBYnXmdRRA/+05tsPJube6EIwwIbqUSUC1mNNqW3ResuDZfqvngIMY=");
+          System.setProperty("aws.accessKeyId", "ASIATAMOP7BA6KXHDRNS");
+          System.setProperty("aws.secretAccessKey", "QG2tN1H2EI5G7d64xLEgxf3DXwCKTfxDfEWpghVa");
+          System.setProperty("aws.sessionToken", "IQoJb3JpZ2luX2VjEGsaCWV1LXdlc3QtMSJGMEQCICmgyS+5XMkSpnftc7sH5lIa5Nssy/nXDYKRs2zrc0lHAiAIO1jZrjQ4g80JCYwgRLaUCt5C0MVaDzqdX53cKlM2jCqmAwhzEAQaDDIwNjk5NDE0MzI5NyIMRArrE159KIzNQBAMKoMDBz3XkyuXz3Ed6q3AazsjtVtSDXYOVftX+7pJe3C/A7y61WePy3VhptFg38xBjcIFTxrFCMsIvXGQXNQO3WL1JzhsSR3HaC0IAFItwQ02+O04cOIfyDuORDqPy414MbA7YRjjAUxrOZmYTZspjYQ9EfsecME2NJAMrskUt4xL3Nij4ZxONAYAPp9rAIBdEnJL9kVb5o8evONTOyIVLhZhM71cu5vUyTm83EFw4Hy6aiVArdnHcxuMsxcbs+krV2UgmtZseJ/tY1Q3e3vODIMNmzKD8si/dsAp7CvuDZvav949arLii5BQlT8s8y4NG0gmIHvtOm/JHNzdZd0gYSHHasn4ek93UO9Bo4kshHlp/t9pHar/3Pzff8iopsc2ckZ1o1m+1+1HZDdqX4K+GlZNED5AL5vVTuHVU8CUinKcbTdw0kYANwE8TLRa2wkkAoWDv3USFXQsW+GhothDIbclusWPXxqw9cZVAoqCQsi8dTTPeEaWxb4SID5efU92i6rN712bML6dnJUGOqcBCqTBDiRqhHzxjflGA4mkhFeuzFqOy8DlUmbZAGeLtATAkDQMcMQMULp8Hh/Ifkw2YQMMBuBXmXB1lSON2bpnwHJD6t0HwfTIqtlfWqaKd2Bvfm9NfUl1ebuYGNDAdfTpAcC/f2jea/fBqsBdY5CB0ff1Va9L0ab+TPQswYg1jLpWqAvT70pADPyUAxTRz4yR/4x/wrszxtXprZdSaTZezKGap5PB49U=");
           System.setProperty("aws.region", "eu-west-1");
 
    // String bucketName = "com.entitygroup.nge2e.dev.import";
