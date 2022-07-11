@@ -1,5 +1,5 @@
 Feature:Translation without QA
-
+@demo
   Scenario: BRM
   Given the user is on the login page
   And the user enters the credentials
